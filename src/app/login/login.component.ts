@@ -8,6 +8,7 @@ import { BackendService } from '../services/backend.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  loginMessage: string;
 
   constructor(private fb: FormBuilder, private backendService: BackendService) {}
 
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   submit() {
     if (this.form.valid) {
       this.submitEM.emit(this.form.value);
-      this.backendService.testEndPoint();
+      this.backendService.testEndPoint().subscribe((data) => this.loginMessage = data.data.message);
     }
   }
 

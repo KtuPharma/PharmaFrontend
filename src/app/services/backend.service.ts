@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { throwError } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
+import {Observable,of, from } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 const headers = new HttpHeaders({
@@ -49,13 +50,14 @@ export class BackendService {
       );
   } */
 
-  private handleError(error: HttpErrorResponse) {
-    return throwError('Something bad happened. :(');
-  }
+    private handleError(error: HttpErrorResponse) {
+        return throwError('Something bad happened. :(');
+    }
 
-    testEndPoint() {
-        return this.http.get<any>(`${environment.apiEndpoint}`, { headers }).subscribe(data => {
-            return data.message;
-        });
+    testEndPoint(): Observable<any> {
+        return this.http.get<any>(`${environment.apiEndpoint}`, { headers })
+        .pipe(
+            catchError(this.handleError)
+        );
     }
 }
