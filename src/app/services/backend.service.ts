@@ -20,36 +20,6 @@ const headers = new HttpHeaders({
 export class BackendService {
   constructor(private http: HttpClient) {}
 
-  /**
-   * Retrieves data and catches errors from provided endpoint
-   * @param dataType data type class same as generic
-   * @param endpoint without backslashes
-   */
-  /* getData<T>(dataType: any, endpoint: string) {
-    return this.http
-      .get<T>(`${environment.apiEndpoint}/${endpoint}`, { headers })
-      .pipe(
-        map((data) => plainToClass<T, any>(dataType, data)),
-        retry(3),
-        catchError(this.handleError)
-      );
-  } */
-
-  /**
-   * Retrieves data array and catches errors from provided endpoint
-   * @param dataType data type class same as generic
-   * @param endpoint without backslashes
-   */
-  /* getDataArray<T>(dataType: any, endpoint: string) {
-    return this.http
-      .get<T[]>(`${environment.apiEndpoint}/${endpoint}`, { headers })
-      .pipe(
-        map((data) => plainToClass<T[], any>(dataType, data)),
-        retry(3),
-        catchError(this.handleError)
-      );
-  } */
-
     private handleError(error: HttpErrorResponse) {
         return throwError('Something bad happened. :(');
     }
