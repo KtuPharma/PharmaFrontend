@@ -40,13 +40,35 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { LoginComponent } from './login/login.component';
+import { AdminOrdersComponent } from './admin/orders/orders.component';
+import { AdminUsersComponent } from './admin/users/users.component';
+import { AdminSuppliersComponent } from './admin/suppliers/suppliers.component';
+import { AdminPharmaciesComponent } from './admin/pharmacies/pharmacies.component';
+import { PharmacistOrdersComponent } from './pharmacist/orders/orders.component';
+import { PharmacistStockComponent } from './pharmacist/stock/stock.component';
+import { PharmacistAnalyticsComponent } from './pharmacist/analytics/analytics.component';
+import { DeliveryManOrdersComponent } from './deliveryman/orders/orders.component';
+import { StoremanStockComponent } from './storeman/stock/stock.component';
+import { StoremanOrdersComponent } from './storeman/orders/orders.component';
+import { StoremanMedicineListComponent } from './storeman/medicine-list/medicine-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     DataListComponent,
-    LoginComponent
+    LoginComponent,
+    AdminOrdersComponent,
+    AdminUsersComponent,
+    AdminSuppliersComponent,
+    AdminPharmaciesComponent,
+    PharmacistOrdersComponent,
+    PharmacistStockComponent,
+    PharmacistAnalyticsComponent,
+    DeliveryManOrdersComponent,
+    StoremanStockComponent,
+    StoremanOrdersComponent,
+    StoremanMedicineListComponent
   ],
   imports: [
     BrowserModule,
