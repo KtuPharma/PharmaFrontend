@@ -1,32 +1,75 @@
 <mat-toolbar color="primary">
-    <button mat-button [matMenuTriggerFor]="adminMenu">Administratorius</button>
-    <mat-menu #adminMenu="matMenu">
-        <button mat-menu-item  routerLink="/admin/orders" routerLinkActive="active">Užskaymai</button>
-        <button mat-menu-item routerLink="/admin/users" routerLinkActive="active">Vartotojai</button>
-        <button mat-menu-item routerLink="/admin/suppliers" routerLinkActive="active">Tiekėjai</button>
-        <button mat-menu-item routerLink="/admin/pharmacies" routerLinkActive="active">Vaistinės</button>
-    </mat-menu>
-    
-    <button mat-button [matMenuTriggerFor]="pharmacistMenu">Vaistininkas</button>
-    <mat-menu #pharmacistMenu="matMenu">
-      <button mat-menu-item routerLink="/pharmacist/orders" routerLinkActive="active">Užsakymai</button>
-      <button mat-menu-item routerLink="/pharmacist/stock" routerLinkActive="active">Likučiai</button>
-      <button mat-menu-item routerLink="/pharmacist/analytics" routerLinkActive="active">Apyvarta</button>
-    </mat-menu>
-    
-    <button mat-button [matMenuTriggerFor]="transporterMenu">Išvežiotojas</button>
-    <mat-menu #transporterMenu="matMenu">
-      <button mat-menu-item routerLink="/delivery-man/orders" routerLinkActive="active">Užsakymai</button>
-    </mat-menu>    
-    
-    <button mat-button [matMenuTriggerFor]="stockMenu">Sandelėninkas</button>
-    <mat-menu #stockMenu="matMenu">
-      <button mat-menu-item routerLink="/storeman/medicine-list" routerLinkActive="active">Vaistai</button>
-      <button mat-menu-item routerLink="/storeman/orders" routerLinkActive="active">Užsakymai</button>
-      <button mat-menu-item routerLink="/storeman/stock" routerLinkActive="active">Likučiai</button>
-    </mat-menu>
-    <span class="spacer"></span>
-    <button mat-icon-button routerLink="/" routerLinkActive="active">
-      <mat-icon>login</mat-icon>
+  <button mat-icon-button routerLink="/home" routerLinkActive="active">
+    <mat-icon>home</mat-icon>
+  </button>
+
+  <div *ngIf="role === 'Admin'">
+    <button mat-button routerLink="/admin/orders" routerLinkActive="active">
+      Užskaymai
     </button>
+    <button mat-button routerLink="/admin/users" routerLinkActive="active">
+      Vartotojai
+    </button>
+    <button mat-button routerLink="/admin/suppliers" routerLinkActive="active">
+      Tiekėjai
+    </button>
+    <button mat-button routerLink="/admin/pharmacies" routerLinkActive="active">
+      Vaistinės
+    </button>
+  </div>
+
+  <div *ngIf="role === 'Pharmacy'">
+    <button
+      mat-button
+      routerLink="/pharmacist/orders"
+      routerLinkActive="active"
+    >
+      Užsakymai
+    </button>
+    <button mat-button routerLink="/pharmacist/stock" routerLinkActive="active">
+      Likučiai
+    </button>
+    <button
+      mat-button
+      routerLink="/pharmacist/analytics"
+      routerLinkActive="active"
+    >
+      Apyvarta
+    </button>
+  </div>
+
+  <div *ngIf="role === 'Transportation'">
+    <button
+      mat-button
+      routerLink="/delivery-man/orders"
+      routerLinkActive="active"
+    >
+      Užsakymai
+    </button>
+  </div>
+
+  <div *ngIf="role === 'Warehouse'">
+    <button
+      mat-button
+      routerLink="/storeman/medicine-list"
+      routerLinkActive="active"
+    >
+      Vaistai
+    </button>
+    <button mat-button routerLink="/storeman/orders" routerLinkActive="active">
+      Užsakymai
+    </button>
+    <button mat-button routerLink="/storeman/stock" routerLinkActive="active">
+      Likučiai
+    </button>
+  </div>
+  <span class="spacer"></span>
+  <button
+    (click)="logout()"
+    mat-icon-button
+    routerLink="/"
+    routerLinkActive="active"
+  >
+    <mat-icon>login</mat-icon>
+  </button>
 </mat-toolbar>

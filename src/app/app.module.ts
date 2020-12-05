@@ -6,7 +6,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './app-header/header.component';
-import { DataListComponent } from './data-list/data-list.component';
+import { TokenInterceptorService } from './auth/token-interceptor.service';
+import { RoleGuardService } from './auth/role-guard.service';
 
 //Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -51,12 +52,12 @@ import { DeliveryManOrdersComponent } from './deliveryman/orders/orders.componen
 import { StoremanStockComponent } from './storeman/stock/stock.component';
 import { StoremanOrdersComponent } from './storeman/orders/orders.component';
 import { StoremanMedicineListComponent } from './storeman/medicine-list/medicine-list.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    DataListComponent,
     LoginComponent,
     AdminOrdersComponent,
     AdminUsersComponent,
@@ -68,7 +69,8 @@ import { StoremanMedicineListComponent } from './storeman/medicine-list/medicine
     DeliveryManOrdersComponent,
     StoremanStockComponent,
     StoremanOrdersComponent,
-    StoremanMedicineListComponent
+    StoremanMedicineListComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,9 +107,16 @@ import { StoremanMedicineListComponent } from './storeman/medicine-list/medicine
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    RoleGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

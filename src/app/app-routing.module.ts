@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DataListComponent } from './data-list/data-list.component';
+import { RoleGuardService as RoleGuard } from './auth/role-guard.service';
+
 import { LoginComponent } from './login/login.component';
 import { AdminOrdersComponent } from './admin/orders/orders.component';
 import { AdminUsersComponent } from './admin/users/users.component';
@@ -13,24 +14,75 @@ import { DeliveryManOrdersComponent } from './deliveryman/orders/orders.componen
 import { StoremanStockComponent } from './storeman/stock/stock.component';
 import { StoremanOrdersComponent } from './storeman/orders/orders.component';
 import { StoremanMedicineListComponent } from './storeman/medicine-list/medicine-list.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent},
-  {path: 'admin/orders', component: AdminOrdersComponent},
-  {path: 'admin/users', component: AdminUsersComponent},
-  {path: 'admin/suppliers', component: AdminSuppliersComponent},
-  {path: 'admin/pharmacies', component: AdminPharmaciesComponent},
-  {path: 'pharmacist/analytics', component: PharmacistAnalyticsComponent},
-  {path: 'pharmacist/orders', component: PharmacistOrdersComponent},
-  {path: 'pharmacist/stock', component: PharmacistStockComponent},
-  {path: 'delivery-man/orders', component: DeliveryManOrdersComponent},
-  {path: 'storeman/stock', component: StoremanStockComponent},
-  {path: 'storeman/orders', component: StoremanOrdersComponent},
-  {path: 'storeman/medicine-list', component: StoremanMedicineListComponent},
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'home',
+    component: HomePageComponent,
+  },
+  {
+    path: 'admin/orders',
+    component: AdminOrdersComponent,
+    canActivate: [RoleGuard],
+  },
+  {
+    path: 'admin/users',
+    component: AdminUsersComponent,
+    canActivate: [RoleGuard],
+  },
+  {
+    path: 'admin/suppliers',
+    component: AdminSuppliersComponent,
+    canActivate: [RoleGuard],
+  },
+  {
+    path: 'admin/pharmacies',
+    component: AdminPharmaciesComponent,
+    canActivate: [RoleGuard],
+  },
+  {
+    path: 'pharmacist/analytics',
+    component: PharmacistAnalyticsComponent,
+    canActivate: [RoleGuard],
+  },
+  {
+    path: 'pharmacist/orders',
+    component: PharmacistOrdersComponent,
+    canActivate: [RoleGuard],
+  },
+  {
+    path: 'pharmacist/stock',
+    component: PharmacistStockComponent,
+    canActivate: [RoleGuard],
+  },
+  {
+    path: 'delivery-man/orders',
+    component: DeliveryManOrdersComponent,
+    canActivate: [RoleGuard],
+  },
+  {
+    path: 'storeman/stock',
+    component: StoremanStockComponent,
+    canActivate: [RoleGuard],
+  },
+  {
+    path: 'storeman/orders',
+    component: StoremanOrdersComponent,
+    canActivate: [RoleGuard],
+  },
+  {
+    path: 'storeman/medicine-list',
+    component: StoremanMedicineListComponent,
+    canActivate: [RoleGuard],
+  },
+  // otherwise redirect to home
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

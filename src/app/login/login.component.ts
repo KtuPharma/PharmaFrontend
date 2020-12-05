@@ -1,30 +1,62 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { BackendService } from '../services/backend.service';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
+import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.less']
+  styleUrls: ['./login.component.less'],
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
   loginMessage: string;
+  loginError: any;
 
-  constructor(private fb: FormBuilder, private backendService: BackendService) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
-      username: new FormControl(''),
-      password: new FormControl(''),
+      email: [
+        ,
+        {
+          validators: [Validators.required, Validators.email],
+          updateOn: 'change',
+        },
+      ],
+      password: [
+        ,
+        {
+          validators: [Validators.required],
+        },
+      ],
     });
-  }
-  
-  submit() {
-    if (this.form.valid) {
-      this.submitEM.emit(this.form.value);
-      this.backendService.testEndPoint().subscribe((data) => this.loginMessage = data.data.message);
-    }
+    if (this.auth.loggedIn()) this.router.navigate(['home']);
   }
 
-  @Output() submitEM = new EventEmitter();
+  submit() {
+    if (this.form.valid) {
+      this.auth.loginUser(this.form.value).subscribe(
+        (result) => {
+          localStorage.setItem('token', result.token);
+          this.router.navigate(['home']);
+        },
+        (err) => {
+          this.loginError = err.error.details
+            ? err.error.details
+            : err.error.title
+            ? err.error.title
+            : 'Something bad happened, try again later';
+        }
+      );
+    }
+  }
 }
