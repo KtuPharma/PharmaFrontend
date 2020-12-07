@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './app-header/header.component';
@@ -108,6 +110,10 @@ import { HomePageComponent } from './home-page/home-page.component';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC7Fw0z5GY35ruOAa4B_6iz1xXdj0dwQa8',
+    }),
+    AgmDirectionModule,
   ],
   providers: [
     RoleGuardService,
