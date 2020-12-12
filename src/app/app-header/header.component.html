@@ -19,41 +19,28 @@
   </div>
 
   <div *ngIf="role === 'Pharmacy'">
-    <button
-      mat-button
-      routerLink="/pharmacist/orders"
-      routerLinkActive="active"
-    >
+    <button mat-button routerLink="/pharmacist/orders" routerLinkActive="active">
       Užsakymai
     </button>
     <button mat-button routerLink="/pharmacist/stock" routerLinkActive="active">
       Likučiai
     </button>
-    <button
-      mat-button
-      routerLink="/pharmacist/analytics"
-      routerLinkActive="active"
-    >
+    <button mat-button routerLink="/pharmacist/analytics" routerLinkActive="active">
       Apyvarta
+    </button>
+    <button mat-button routerLink="/pharmacist/messages" routerLinkActive="active">
+      Messages
     </button>
   </div>
 
   <div *ngIf="role === 'Transportation'">
-    <button
-      mat-button
-      routerLink="/delivery-man/orders"
-      routerLinkActive="active"
-    >
+    <button mat-button routerLink="/delivery-man/orders" routerLinkActive="active">
       Užsakymai
     </button>
   </div>
 
   <div *ngIf="role === 'Warehouse'">
-    <button
-      mat-button
-      routerLink="/storeman/medicine-list"
-      routerLinkActive="active"
-    >
+    <button mat-button routerLink="/storeman/medicine-list" routerLinkActive="active">
       Vaistai
     </button>
     <button mat-button routerLink="/storeman/orders" routerLinkActive="active">
@@ -64,12 +51,7 @@
     </button>
   </div>
   <span class="spacer"></span>
-  <button
-    (click)="logout()"
-    mat-icon-button
-    routerLink="/"
-    routerLinkActive="active"
-  >
+  <button (click)="logout()" mat-icon-button routerLink="/" routerLinkActive="active">
     <mat-icon>login</mat-icon>
   </button>
 </mat-toolbar>

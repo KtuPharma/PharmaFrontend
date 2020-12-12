@@ -15,6 +15,7 @@ import { StoremanStockComponent } from './storeman/stock/stock.component';
 import { StoremanOrdersComponent } from './storeman/orders/orders.component';
 import { StoremanMedicineListComponent } from './storeman/medicine-list/medicine-list.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MessagesComponent } from './pharmacist/messages/messages.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -55,6 +56,11 @@ const routes: Routes = [
   {
     path: 'pharmacist/stock',
     component: PharmacistStockComponent,
+    canActivate: [RoleGuard],
+  },
+  {
+    path: 'pharmacist/messages',
+    component: MessagesComponent,
     canActivate: [RoleGuard],
   },
   {

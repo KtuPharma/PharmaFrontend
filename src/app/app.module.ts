@@ -53,6 +53,7 @@ import { StoremanStockComponent } from './storeman/stock/stock.component';
 import { StoremanOrdersComponent } from './storeman/orders/orders.component';
 import { StoremanMedicineListComponent } from './storeman/medicine-list/medicine-list.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MessagesComponent } from './pharmacist/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     StoremanOrdersComponent,
     StoremanMedicineListComponent,
     HomePageComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,
