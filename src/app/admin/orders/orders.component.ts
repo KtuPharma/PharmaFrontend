@@ -1,31 +1,32 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { OrdersService } from '../../services/orders/orders.service';
+import { Order } from '../../interfaces/order';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.less']
+  styleUrls: ['./orders.component.less'],
 })
 export class AdminOrdersComponent implements OnInit {
+  orders: Order[];
+  displayedColumns: string[] = [
+    'orderTime',
+    'deliveryTime',
+    'senderAddress',
+    'receiverAddress',
+    'status',
+    'price',
+  ];
 
-  @Input()
-  rezults: Observable<any>;
+  constructor(private ordersService: OrdersService) {}
 
-  constructor(private ordersService: OrdersService) { 
-  ordersService.getOrders().subscribe((value) => console.log(value));
+  ngOnInit(): void {
+    this.getOrders();
   }
 
-  ngOnInit(): void {}
-
-}
-
-interface orders{
-    id:number,
-    order_time:string,
-    delivery_time:string,
-    address_from:string,
-    address_to:string,
-    status:string,
-    price:number
+  getOrders(): void {
+    this.ordersService
+      .getOrders()
+      .subscribe((response) => (this.orders = [...response.data]));
+  }
 }
