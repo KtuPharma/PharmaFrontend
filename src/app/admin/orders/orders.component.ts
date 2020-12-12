@@ -16,6 +16,7 @@ export class AdminOrdersComponent implements OnInit {
     'receiverAddress',
     'status',
     'price',
+    'actions'
   ];
 
   constructor(private ordersService: OrdersService) {}

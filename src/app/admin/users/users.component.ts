@@ -22,6 +22,7 @@ export class AdminUsersComponent implements OnInit {
     'birthdate',
     'status',
     'workplace',
+    'actions',
   ];
   constructor(private usersService:UsersService) { }
 

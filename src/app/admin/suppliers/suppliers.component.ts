@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Supplier } from 'src/app/interfaces/supplier';
+import { SupplierService } from 'src/app/services/suppliers/suppliers.service';
 
 @Component({
   selector: 'app-suppliers',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminSuppliersComponent implements OnInit {
 
-  constructor() { }
+  suppliers : Supplier[];
+
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'country',
+    'actions'
+  ];
+  constructor(private suppliersService: SupplierService) {}
 
   ngOnInit(): void {
+    this.getSuppliers();
+  }
+
+  getSuppliers(): void {
+    this.suppliersService
+      .getSuppliers()
+      .subscribe((response) => (this.suppliers = [...response.data]));
   }
 
 }
