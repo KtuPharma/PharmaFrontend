@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { OrdersService } from '../../services/orders/orders.service';
 
 @Component({
   selector: 'app-orders',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminOrdersComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  rezults: Observable<any>;
 
-  ngOnInit(): void {
+  constructor(private ordersService: OrdersService) { 
+  ordersService.getOrders().subscribe((value) => console.log(value));
   }
 
+  ngOnInit(): void {}
+
+}
+
+interface orders{
+    id:number,
+    order_time:string,
+    delivery_time:string,
+    address_from:string,
+    address_to:string,
+    status:string,
+    price:number
 }
