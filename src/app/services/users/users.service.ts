@@ -22,10 +22,4 @@ export class UsersService {
   private handleError(error: HttpErrorResponse) {
     return throwError('Something bad happened. :(');
   }
-
-  getUsers(): Observable<any> {
-    return this.http
-      .get<any>(`${environment.apiEndpoint}/Users`, { headers })
-      .pipe(catchError(this.handleError));
-  }
 }

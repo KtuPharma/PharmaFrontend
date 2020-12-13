@@ -2,6 +2,9 @@
     <h1>Users</h1>
 </mat-card>
 
+<button type="submit" mat-raised-button class="button2" (click)="onCreate()">New user</button>
+<p></p>
+
 <table mat-table [dataSource]="users" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id</th>

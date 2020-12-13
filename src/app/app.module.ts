@@ -53,6 +53,7 @@ import { StoremanStockComponent } from './storeman/stock/stock.component';
 import { StoremanOrdersComponent } from './storeman/orders/orders.component';
 import { StoremanMedicineListComponent } from './storeman/medicine-list/medicine-list.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ɵEmptyOutletComponent } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,6 @@ import { HomePageComponent } from './home-page/home-page.component';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

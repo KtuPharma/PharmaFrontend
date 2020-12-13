@@ -21,10 +21,4 @@ export class PharmaciesService {
   private handleError(error: HttpErrorResponse) {
     return throwError('Something bad happened. :(');
   }
-
-  getPharmacies(): Observable<any> {
-    return this.http
-      .get<any>(`${environment.apiEndpoint}/Pharmacies`, { headers })
-      .pipe(catchError(this.handleError));
-  }
 }
