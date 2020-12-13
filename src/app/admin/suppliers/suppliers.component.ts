@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Supplier } from 'src/app/interfaces/supplier';
 import { SupplierService } from 'src/app/services/suppliers/suppliers.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-suppliers',
@@ -10,6 +11,7 @@ import { SupplierService } from 'src/app/services/suppliers/suppliers.service';
 export class AdminSuppliersComponent implements OnInit {
 
   suppliers : Supplier[];
+  error : any[];
 
   displayedColumns: string[] = [
     'id',
@@ -17,10 +19,20 @@ export class AdminSuppliersComponent implements OnInit {
     'country',
     'actions'
   ];
-  constructor(private suppliersService: SupplierService) {}
+  constructor(private suppliersService: SupplierService, private router: Router,) {}
 
   ngOnInit(): void {
     this.getSuppliers();
+  }
+
+  submit(id:number): void{
+    this.suppliersService
+    .changeProviderStatus(id)
+    .subscribe(result => {this.getSuppliers()});
+  }
+
+  onDelete(id:number): void{
+    this.suppliers.splice(2, 1);
   }
 
   getSuppliers(): void {

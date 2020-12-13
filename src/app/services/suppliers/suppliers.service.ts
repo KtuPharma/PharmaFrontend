@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
@@ -26,6 +26,11 @@ export class SupplierService {
     return this.http
       .get<any>(`${environment.apiEndpoint}/Providers`, { headers })
       .pipe(catchError(this.handleError));
+  }
+
+  changeProviderStatus(id : number): Observable<any>{
+    return this.http.post<any>(`${environment.apiEndpoint}/Providers/${id}`, id, {headers})
+    .pipe(catchError(this.handleError));
   }
 }
 
