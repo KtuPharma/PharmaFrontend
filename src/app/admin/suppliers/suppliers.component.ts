@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Supplier } from 'src/app/interfaces/supplier';
 import { SupplierService } from 'src/app/services/suppliers/suppliers.service';
 import { Router } from '@angular/router';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-suppliers',
@@ -19,7 +20,7 @@ export class AdminSuppliersComponent implements OnInit {
     'country',
     'actions'
   ];
-  constructor(private suppliersService: SupplierService, private router: Router,) {}
+  constructor(private backendService: BackendService, private suppliersService: SupplierService, private router: Router,) {}
 
   ngOnInit(): void {
     this.getSuppliers();
@@ -31,13 +32,13 @@ export class AdminSuppliersComponent implements OnInit {
     .subscribe(result => {this.getSuppliers()});
   }
 
-  onDelete(id:number): void{
+ /* onDelete(id:number): void{
     this.suppliers.splice(2, 1);
-  }
+  }*/
 
   getSuppliers(): void {
-    this.suppliersService
-      .getSuppliers()
+    this.backendService
+      .getDataList("Providers")
       .subscribe((response) => (this.suppliers = [...response.data]));
   }
 

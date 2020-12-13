@@ -24,8 +24,8 @@ export class BackendService {
         return throwError('Something bad happened. :(');
     }
 
-    testEndPoint(): Observable<any> {
-        return this.http.get<any>(`${environment.apiEndpoint}`, { headers })
+    getDataList(data: string): Observable<any> {
+        return this.http.get<any>(`${environment.apiEndpoint}/${data}`, { headers })
         .pipe(
             catchError(this.handleError)
         );

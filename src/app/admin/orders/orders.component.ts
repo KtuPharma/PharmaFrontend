@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { OrdersService } from '../../services/orders/orders.service';
 import { Order } from '../../interfaces/order';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-orders',
@@ -19,15 +20,15 @@ export class AdminOrdersComponent implements OnInit {
     'actions'
   ];
 
-  constructor(private ordersService: OrdersService) {}
+  constructor(private backendService: BackendService) {}
 
   ngOnInit(): void {
     this.getOrders();
   }
 
   getOrders(): void {
-    this.ordersService
-      .getOrders()
+    this.backendService
+      .getDataList("Orders")
       .subscribe((response) => (this.orders = [...response.data]));
   }
 }
