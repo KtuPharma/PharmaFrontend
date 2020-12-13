@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
-
 import { throwError } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
-import {Observable,of, from } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { Observable, of, from } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 const headers = new HttpHeaders({
   'Content-Type': 'application/json',
@@ -17,17 +15,16 @@ const headers = new HttpHeaders({
 @Injectable({
   providedIn: 'root',
 })
-export class BackendService {
+export class OrdersService {
   constructor(private http: HttpClient) {}
 
-    private handleError(error: HttpErrorResponse) {
-        return throwError('Something bad happened. :(');
-    }
+  private handleError(error: HttpErrorResponse) {
+    return throwError('Something bad happened. :(');
+  }
 
-    getDataList(data: string): Observable<any> {
-        return this.http.get<any>(`${environment.apiEndpoint}/${data}`, { headers })
-        .pipe(
-            catchError(this.handleError)
-        );
-    }
+  getOrders(): Observable<any> {
+    return this.http
+      .get<any>(`${environment.apiEndpoint}/Orders`, { headers })
+      .pipe(catchError(this.handleError));
+  }
 }
