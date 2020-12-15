@@ -32,10 +32,6 @@ export class AdminSuppliersComponent implements OnInit {
     .subscribe(result => {this.getSuppliers()});
   }
 
- /* onDelete(id:number): void{
-    this.suppliers.splice(2, 1);
-  }*/
-
   getSuppliers(): void {
     this.backendService
       .getDataList("Providers")
