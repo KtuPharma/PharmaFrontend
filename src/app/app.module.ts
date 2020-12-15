@@ -53,6 +53,8 @@ import { StoremanStockComponent } from './storeman/stock/stock.component';
 import { StoremanOrdersComponent } from './storeman/orders/orders.component';
 import { StoremanMedicineListComponent } from './storeman/medicine-list/medicine-list.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ɵEmptyOutletComponent } from '@angular/router';
+import { StatusComponent } from './admin/users/status/status.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     StoremanOrdersComponent,
     StoremanMedicineListComponent,
     HomePageComponent,
+    StatusComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,6 +120,6 @@ import { HomePageComponent } from './home-page/home-page.component';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

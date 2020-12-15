@@ -22,12 +22,6 @@ export class SupplierService {
     return throwError('Something bad happened. :(');
   }
 
-  getSuppliers(): Observable<any> {
-    return this.http
-      .get<any>(`${environment.apiEndpoint}/Providers`, { headers })
-      .pipe(catchError(this.handleError));
-  }
-
   changeProviderStatus(id : number): Observable<any>{
     return this.http.post<any>(`${environment.apiEndpoint}/Providers/${id}`, id, {headers})
     .pipe(catchError(this.handleError));
