@@ -21,4 +21,10 @@ export class OrdersService {
   private handleError(error: HttpErrorResponse) {
     return throwError('Something bad happened. :(');
   }
+
+  getOrderInformation(id: string): Observable<any> {
+    return this.http
+      .get<any>(`${environment.apiEndpoint}/Orders/${id}/order`, { headers })
+      .pipe(catchError(this.handleError));
+  }
 }

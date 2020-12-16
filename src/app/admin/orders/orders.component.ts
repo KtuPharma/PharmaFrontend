@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { OrdersService } from '../../services/orders/orders.service';
 import { Order } from '../../interfaces/order';
 import { BackendService } from 'src/app/services/backend.service';
+import { OrderComponent } from './order/order.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-orders',
@@ -17,10 +19,14 @@ export class AdminOrdersComponent implements OnInit {
     'receiverAddress',
     'status',
     'price',
-    'actions'
+    'actions',
   ];
 
-  constructor(private backendService: BackendService) {}
+  constructor(
+    private backendService: BackendService,
+    private ordersService: OrdersService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getOrders();
@@ -28,7 +34,17 @@ export class AdminOrdersComponent implements OnInit {
 
   getOrders(): void {
     this.backendService
-      .getDataList("Orders")
+      .getDataList('Orders')
       .subscribe((response) => (this.orders = [...response.data]));
+  }
+
+  getOrderInformation(orderId): void {
+    const dialogRef = this.dialog.open(OrderComponent, {
+      data: orderId,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+    });
   }
 }

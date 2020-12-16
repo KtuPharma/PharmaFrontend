@@ -1,0 +1,68 @@
+<div class="order-details">
+  <h1 mat-dialog-title>Order details</h1>
+  <div mat-dialog-content>
+    <div *ngIf="orderInformation">
+      <mat-list role="list">
+        <mat-list-item role="listitem"
+          ><b>Order Stauts:&nbsp;</b
+          >{{ orderInformation.order.status }}</mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><b>Adress From:&nbsp;</b
+          >{{ orderInformation.order.address_from }}</mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><b>Address To:&nbsp;</b
+          >{{ orderInformation.order.address_to }}</mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><b>Order Date:&nbsp;</b
+          >{{ orderInformation.order.order_time }}</mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><b>Delvivery Date:&nbsp;</b
+          >{{ orderInformation.order.delivery_time }}</mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><b>Price:&nbsp;</b>{{ orderInformation.order.price }}€</mat-list-item
+        >
+      </mat-list>
+      <h1 mat-dialog-title>Ordered Medicaments</h1>
+      <table mat-table [dataSource]="orderInformation.productBalances">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let medicament">
+            {{ medicament.medicament }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expiration">
+          <th mat-header-cell *matHeaderCellDef>Expiration Date</th>
+          <td mat-cell *matCellDef="let medicament">
+            {{ medicament.expirationDate }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="provider">
+          <th mat-header-cell *matHeaderCellDef>Provider</th>
+          <td mat-cell *matCellDef="let medicament">
+            {{ medicament.provider }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>Price</th>
+          <td mat-cell *matCellDef="let medicament">
+            {{ medicament.price }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    <mat-spinner *ngIf="!orderInformation"></mat-spinner>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="close()">Close</button>
+  </div>
+</div>

@@ -55,6 +55,7 @@ import { StoremanMedicineListComponent } from './storeman/medicine-list/medicine
 import { HomePageComponent } from './home-page/home-page.component';
 import { ɵEmptyOutletComponent } from '@angular/router';
 import { StatusComponent } from './admin/users/status/status.component';
+import { OrderComponent } from './admin/orders/order/order.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { StatusComponent } from './admin/users/status/status.component';
     StoremanMedicineListComponent,
     HomePageComponent,
     StatusComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
