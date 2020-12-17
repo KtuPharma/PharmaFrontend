@@ -14,18 +14,28 @@ const headers = new HttpHeaders({
 });
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
-
   constructor(private http: HttpClient) {}
 
   private handleError(error: HttpErrorResponse) {
     return throwError('Something bad happened. :(');
   }
 
-  changeUsetStatus(status : StatusDTO): Observable<any>{
-    return this.http.post<any>(`${environment.apiEndpoint}/Users/status/edit`, status, {headers})
-    .pipe(catchError(this.handleError));
+  changeUsetStatus(status: StatusDTO): Observable<any> {
+    return this.http
+      .post<any>(`${environment.apiEndpoint}/Users/status/edit`, status, {
+        headers,
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  createUser(userObject): Observable<any> {
+    return this.http
+      .post<any>(`${environment.apiEndpoint}/Users/register`, userObject, {
+        headers,
+      })
+      .pipe(catchError(this.handleError));
   }
 }

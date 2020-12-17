@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
@@ -56,6 +57,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ɵEmptyOutletComponent } from '@angular/router';
 import { StatusComponent } from './admin/users/status/status.component';
 import { OrderComponent } from './admin/orders/order/order.component';
+import { NewSupplierComponent } from './admin/suppliers/new-supplier/new-supplier.component';
+import { NewUserComponent } from './admin/users/new-user/new-user.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,8 @@ import { OrderComponent } from './admin/orders/order/order.component';
     HomePageComponent,
     StatusComponent,
     OrderComponent,
+    NewSupplierComponent,
+    NewUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +93,7 @@ import { OrderComponent } from './admin/orders/order/order.component';
     MatInputModule,
     MatAutocompleteModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatRadioModule,
     MatSelectModule,
@@ -121,7 +127,8 @@ import { OrderComponent } from './admin/orders/order/order.component';
       useClass: TokenInterceptorService,
       multi: true,
     },
+    MatDatepickerModule,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

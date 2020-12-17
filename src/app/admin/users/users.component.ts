@@ -4,6 +4,7 @@ import { BackendService } from 'src/app/services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminOrdersComponent } from '../orders/orders.component';
 import { StatusComponent } from './status/status.component';
+import { NewUserComponent } from './new-user/new-user.component';
 
 @Component({
   selector: 'app-users',
@@ -42,7 +43,7 @@ export class AdminUsersComponent implements OnInit {
   }
 
   onCreate() {
-    this.dialog.open(AdminOrdersComponent);
+    this.dialog.open(NewUserComponent);
   }
 
   openDialog(id: any): void {
@@ -51,7 +52,6 @@ export class AdminUsersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
       this.getUsers();
       location.reload();
     });

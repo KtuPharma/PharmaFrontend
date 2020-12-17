@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Add Supplier</h1>
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input [(ngModel)]="supplierName" matInput />
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Country</mat-label>
+  <input [(ngModel)]="supplierCountry" matInput />
+</mat-form-field>
+<mat-form-field>
+  <mat-label>WareHouse</mat-label>
+  <mat-select [(value)]="selectedWarehouse">
+    <mat-option [value]="warehouse.id" *ngFor="let warehouse of warehouses">{{
+      warehouse.pharmacyWarehouseOrTruck
+    }}</mat-option>
+  </mat-select>
+</mat-form-field>
+<div class="add-medicaments">
+  <h1 mat-dialog-title>Medicaments</h1>
+  <button mat-icon-button color="primary" (click)="addProduct()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div class="medicament-item" *ngFor="let item of products; index as i">
+  <mat-form-field>
+    <mat-label>Expiration Date</mat-label>
+    <input [(ngModel)]="products[i].expirationDate" type="date" matInput />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <mat-select [(ngModel)]="products[i].medicament">
+      <mat-option
+        [value]="medicament.id"
+        *ngFor="let medicament of medicaments"
+        >{{ medicament.medicament }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Price €</mat-label>
+    <input [(ngModel)]="products[i].price" type="number" matInput />
+  </mat-form-field>
+  <button mat-icon-button color="primary" (click)="deleteProduct(i)">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="add()">Add</button>
+</div>
