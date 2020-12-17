@@ -1,0 +1,54 @@
+<div class="pharmacy-report">
+  <h1 mat-dialog-title>Pharmacy Report</h1>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input [(ngModel)]="fromDate" matStartDate placeholder="Start date" />
+      <input [(ngModel)]="toDate" matEndDate placeholder="End date" />
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-button (click)="getReport()">Generate Report</button>
+  </div>
+  <mat-card *ngIf="pharmacyReport">
+    <mat-list role="list">
+      <h1 mat-dialog-title>
+        Total medicaments ordered:&nbsp;{{ pharmacyReport.allAmount }}
+      </h1>
+      <h1 mat-dialog-title>Order History</h1>
+      <table mat-table [dataSource]="pharmacyReport.pharmacy">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Ordered by</th>
+          <td mat-cell *matCellDef="let order">
+            {{ order.employee }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expiration">
+          <th mat-header-cell *matHeaderCellDef>Amount Ordered</th>
+          <td mat-cell *matCellDef="let order">
+            {{ order.orderAmount }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="provider">
+          <th mat-header-cell *matHeaderCellDef>Date From</th>
+          <td mat-cell *matCellDef="let order">
+            {{ order.dateFrom }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>Date To</th>
+          <td mat-cell *matCellDef="let order">
+            {{ order.dateTo }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-list>
+  </mat-card>
+</div>

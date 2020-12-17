@@ -59,6 +59,7 @@ import { StatusComponent } from './admin/users/status/status.component';
 import { OrderComponent } from './admin/orders/order/order.component';
 import { NewSupplierComponent } from './admin/suppliers/new-supplier/new-supplier.component';
 import { NewUserComponent } from './admin/users/new-user/new-user.component';
+import { PharmaciesReportComponent } from './admin/pharmacies/pharmacies-report/pharmacies-report.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { NewUserComponent } from './admin/users/new-user/new-user.component';
     OrderComponent,
     NewSupplierComponent,
     NewUserComponent,
+    PharmaciesReportComponent,
   ],
   imports: [
     BrowserModule,
