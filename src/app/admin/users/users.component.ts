@@ -21,8 +21,6 @@ export class AdminUsersComponent implements OnInit {
     'lastname',
     'email',
     'department',
-    'registerdate',
-    'birthdate',
     'status',
     'workplace',
     'actions',
@@ -51,9 +49,6 @@ export class AdminUsersComponent implements OnInit {
       data: id,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      this.getUsers();
-      location.reload();
-    });
+    dialogRef.afterClosed().subscribe(() => location.reload());
   }
 }

@@ -1,48 +1,50 @@
-<h1 mat-dialog-title>Add User</h1>
-<mat-form-field>
-  <mat-label>Name</mat-label>
-  <input [(ngModel)]="name" matInput />
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Surname</mat-label>
-  <input [(ngModel)]="lastName" matInput />
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Birth Date</mat-label>
-  <input [(ngModel)]="birthDate" type="date" matInput />
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Username</mat-label>
-  <input [(ngModel)]="username" matInput />
-</mat-form-field>
-<mat-form-field>
-  <mat-label>E-mail</mat-label>
-  <input type="email" [(ngModel)]="email" matInput />
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Personal Code</mat-label>
-  <input type="number" [(ngModel)]="personalCode" matInput />
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Password</mat-label>
-  <input type="password" [(ngModel)]="password" matInput />
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Role</mat-label>
-  <mat-select [(value)]="role" (selectionChange)="getWorkplaceOptions()">
-    <mat-option [value]="option.id" *ngFor="let option of roleOptions">{{
-      option.name
-    }}</mat-option>
-  </mat-select>
-</mat-form-field>
-<mat-form-field *ngIf="workPlace">
-  <mat-label>Workplace</mat-label>
-  <mat-select [(value)]="workPlace">
-    <mat-option [value]="option.id" *ngFor="let option of workplaceOptions">{{
-      option.pharmacyWarehouseOrTruck
-    }}</mat-option>
-  </mat-select>
-</mat-form-field>
-<div mat-dialog-actions>
-  <button mat-button (click)="submit()">Add</button>
+<div class="add-user-dialog">
+  <h1 mat-dialog-title>Add User</h1>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input [(ngModel)]="name" matInput />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Surname</mat-label>
+    <input [(ngModel)]="lastName" matInput />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Birth Date</mat-label>
+    <input [(ngModel)]="birthDate" type="date" matInput />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input [(ngModel)]="username" matInput />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>E-mail</mat-label>
+    <input type="email" [(ngModel)]="email" matInput />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Personal Code</mat-label>
+    <input type="number" [(ngModel)]="personalCode" matInput />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input type="password" [(ngModel)]="password" matInput />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Role</mat-label>
+    <mat-select [(value)]="role" (selectionChange)="getWorkplaceOptions()">
+      <mat-option [value]="option.id" *ngFor="let option of roleOptions">{{
+        option.name
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field *ngIf="workPlace">
+    <mat-label>Workplace</mat-label>
+    <mat-select [(value)]="workPlace">
+      <mat-option [value]="option.id" *ngFor="let option of workplaceOptions">{{
+        option.pharmacyWarehouseOrTruck
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-flat-button color="primary" (click)="submit()">Add</button>
+  </div>
 </div>

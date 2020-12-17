@@ -40,10 +40,10 @@
     <mat-label>Price €</mat-label>
     <input [(ngModel)]="products[i].price" type="number" matInput />
   </mat-form-field>
-  <button mat-icon-button color="primary" (click)="deleteProduct(i)">
+  <button mat-icon-button color="warn" (click)="deleteProduct(i)">
     <mat-icon>delete</mat-icon>
   </button>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="add()">Add</button>
+  <button mat-flat-button color="primary" (click)="add()">Add</button>
 </div>

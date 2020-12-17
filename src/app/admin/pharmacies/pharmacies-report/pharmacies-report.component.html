@@ -10,7 +10,9 @@
     <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
   <div mat-dialog-actions>
-    <button mat-button (click)="getReport()">Generate Report</button>
+    <button mat-flat-button color="primary" (click)="getReport()">
+      Generate Report
+    </button>
   </div>
   <mat-card *ngIf="pharmacyReport">
     <mat-list role="list">

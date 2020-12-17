@@ -2,7 +2,7 @@
   <h1>Suppliers</h1>
 </mat-card>
 
-<button mat-raised-button class="button2" (click)="newSupplier()">
+<button mat-flat-button color="primary" (click)="newSupplier()">
   New supplier
 </button>
 <p></p>
@@ -29,8 +29,8 @@
       <button
         type="submit"
         (click)="submit(supplier.id)"
-        mat-raised-button
-        class="button"
+        mat-flat-button
+        color="primary"
       >
         Remove
       </button>
@@ -40,3 +40,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+<mat-spinner *ngIf="!suppliers"></mat-spinner>
