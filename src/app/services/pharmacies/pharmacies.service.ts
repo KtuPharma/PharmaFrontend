@@ -13,12 +13,20 @@ const headers = new HttpHeaders({
 });
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PharmaciesService {
   constructor(private http: HttpClient) {}
 
   private handleError(error: HttpErrorResponse) {
     return throwError('Something bad happened. :(');
+  }
+
+  getReport(query): Observable<any> {
+    return this.http
+      .post<any>(`${environment.apiEndpoint}/Reports/report`, query, {
+        headers,
+      })
+      .pipe(catchError(this.handleError));
   }
 }

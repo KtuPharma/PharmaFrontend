@@ -1,31 +1,37 @@
 <mat-card class="display-card">
-    <h1>Pharmacies</h1>
+  <h1>Pharmacies</h1>
 </mat-card>
 
 <table mat-table [dataSource]="pharmacies" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>Id</th>
-      <td mat-cell *matCellDef="let pharmacy">{{ pharmacy.id }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef>Address</th>
-      <td mat-cell *matCellDef="let pharmacy">{{ pharmacy.address }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="city">
-      <th mat-header-cell *matHeaderCellDef>City</th>
-      <td mat-cell *matCellDef="let pharmacy">{{ pharmacy.city }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell  *matHeaderCellDef class="center"> Action </th>
-      <td mat-cell *matCellDef="let row" class="center" >
-        <button type="submit" mat-raised-button class="button">Report</button>
-      </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-  
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let pharmacy">{{ pharmacy.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef>Address</th>
+    <td mat-cell *matCellDef="let pharmacy">{{ pharmacy.address }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="city">
+    <th mat-header-cell *matHeaderCellDef>City</th>
+    <td mat-cell *matCellDef="let pharmacy">{{ pharmacy.city }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef class="center">Action</th>
+    <td mat-cell *matCellDef="let pharmacy" class="center">
+      <button
+        (click)="getOrderInformation(pharmacy.id)"
+        mat-flat-button
+        color="primary"
+      >
+        Report
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<mat-spinner *ngIf="!pharmacies"></mat-spinner>

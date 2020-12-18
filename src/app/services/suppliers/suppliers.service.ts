@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
@@ -13,7 +13,7 @@ const headers = new HttpHeaders({
 });
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SupplierService {
   constructor(private http: HttpClient) {}
@@ -22,9 +22,17 @@ export class SupplierService {
     return throwError('Something bad happened. :(');
   }
 
-  changeProviderStatus(id : number): Observable<any>{
-    return this.http.post<any>(`${environment.apiEndpoint}/Providers/${id}`, id, {headers})
-    .pipe(catchError(this.handleError));
+  changeProviderStatus(id: number): Observable<any> {
+    return this.http
+      .post<any>(`${environment.apiEndpoint}/Providers/${id}`, id, { headers })
+      .pipe(catchError(this.handleError));
+  }
+
+  createProvider(providerObject): Observable<any> {
+    return this.http
+      .post<any>(`${environment.apiEndpoint}/Providers`, providerObject, {
+        headers,
+      })
+      .pipe(catchError(this.handleError));
   }
 }
-

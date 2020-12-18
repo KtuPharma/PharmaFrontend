@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Pharmacy } from 'src/app/interfaces/pharmacy';
 import { BackendService } from 'src/app/services/backend.service';
 import { PharmaciesService } from 'src/app/services/pharmacies/pharmacies.service';
+import { PharmaciesReportComponent } from './pharmacies-report/pharmacies-report.component';
 
 @Component({
   selector: 'app-pharmacies',
   templateUrl: './pharmacies.component.html',
-  styleUrls: ['./pharmacies.component.less']
+  styleUrls: ['./pharmacies.component.less'],
 })
 export class AdminPharmaciesComponent implements OnInit {
-
   pharmacies: Pharmacy[];
 
-  displayedColumns: string[] = [
-    'id',
-    'address',
-    'city',
-    'actions'
-  ]
+  displayedColumns: string[] = ['id', 'address', 'city', 'actions'];
 
-  constructor(private backendService: BackendService) { }
+  constructor(
+    private backendService: BackendService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getPharmacies();
@@ -27,7 +26,13 @@ export class AdminPharmaciesComponent implements OnInit {
 
   getPharmacies(): void {
     this.backendService
-    .getDataList("Pharmacies")
-    .subscribe((response) => (this.pharmacies = [...response.data]));
+      .getDataList('Pharmacies')
+      .subscribe((response) => (this.pharmacies = [...response.data]));
+  }
+
+  getOrderInformation(phamracyId): void {
+    this.dialog.open(PharmaciesReportComponent, {
+      data: phamracyId,
+    });
   }
 }
