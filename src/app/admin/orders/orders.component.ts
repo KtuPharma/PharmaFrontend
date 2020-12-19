@@ -37,12 +37,8 @@ export class AdminOrdersComponent implements OnInit {
   }
 
   getOrderInformation(orderId): void {
-    const dialogRef = this.dialog.open(OrderComponent, {
+    this.dialog.open(OrderComponent, {
       data: orderId,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
     });
   }
 }

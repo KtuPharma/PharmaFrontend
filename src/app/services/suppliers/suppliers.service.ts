@@ -35,4 +35,16 @@ export class SupplierService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  changeProductStatus(id): Observable<any> {
+    return this.http
+      .post<any>(
+        `${environment.apiEndpoint}/products/${id}`,
+        {},
+        {
+          headers,
+        }
+      )
+      .pipe(catchError(this.handleError));
+  }
 }

@@ -1,3 +1,56 @@
 <mat-card class="display-card">
-    <h1>Sandelėninko vaistų sąrašas</h1>
+  <h1>Sandelėninko vaistų sąrašas</h1>
 </mat-card>
+<table mat-table [dataSource]="medicineList" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let medicine">{{ medicine.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="activeSubstance">
+    <th mat-header-cell *matHeaderCellDef>Active Substance</th>
+    <td mat-cell *matCellDef="let medicine">{{ medicine.active_substance }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="barCode">
+    <th mat-header-cell *matHeaderCellDef>Bar Code</th>
+    <td mat-cell *matCellDef="let medicine">{{ medicine.bar_code }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="recipeRequired">
+    <th mat-header-cell *matHeaderCellDef>Recipe Required?</th>
+    <td mat-cell *matCellDef="let medicine">{{ medicine.recipe_required }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="isReimbursed">
+    <th mat-header-cell *matHeaderCellDef>Reimbursed?</th>
+    <td mat-cell *matCellDef="let medicine">{{ medicine.is_reimbursed }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="country">
+    <th mat-header-cell *matHeaderCellDef>Country</th>
+    <td mat-cell *matCellDef="let medicine">{{ medicine.country }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="form">
+    <th mat-header-cell *matHeaderCellDef>Form</th>
+    <td mat-cell *matCellDef="let medicine">{{ medicine.form }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef class="center">Action</th>
+    <td mat-cell *matCellDef="let medicine" class="center">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="changeMedicineStatus(medicine.id)"
+      >
+        Change Status
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<mat-spinner *ngIf="!medicineList"></mat-spinner>

@@ -29,4 +29,16 @@ export class PharmaciesService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  changeMedicineStatus(id): Observable<any> {
+    return this.http
+      .post<any>(
+        `${environment.apiEndpoint}/Medicaments/${id}`,
+        {},
+        {
+          headers,
+        }
+      )
+      .pipe(catchError(this.handleError));
+  }
 }
