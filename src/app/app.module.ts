@@ -60,6 +60,10 @@ import { OrderComponent } from './admin/orders/order/order.component';
 import { NewSupplierComponent } from './admin/suppliers/new-supplier/new-supplier.component';
 import { NewUserComponent } from './admin/users/new-user/new-user.component';
 import { PharmaciesReportComponent } from './admin/pharmacies/pharmacies-report/pharmacies-report.component';
+import { OrderComponent2 } from './deliveryman/orders/order/order.component';
+import { DelayOrderComponent } from './deliveryman/orders/delay-order/delay-order.component';
+import { Status2Component } from './deliveryman/orders/status2/status2.component';
+import { MessageDialogComponent } from './shared/message-dialog/message-dialog.component';
 
 @NgModule({
   declarations: [
@@ -80,9 +84,13 @@ import { PharmaciesReportComponent } from './admin/pharmacies/pharmacies-report/
     HomePageComponent,
     StatusComponent,
     OrderComponent,
+    OrderComponent2,
     NewSupplierComponent,
     NewUserComponent,
     PharmaciesReportComponent,
+    DelayOrderComponent,
+    Status2Component,
+    MessageDialogComponent,
   ],
   imports: [
     BrowserModule,

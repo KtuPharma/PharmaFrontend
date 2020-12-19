@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delay order delivery</h1>
+<mat-label>Days</mat-label>
+<mat-slider thumbLabel min="1" max="7" step="1" [(value)]="days"></mat-slider>
+<div class="">Order will be delayed by {{ days }} days</div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="delayOrder()">Delay</button>
+  <button mat-flat-button color="primary" (click)="cancel()">Cancel</button>
+</div>

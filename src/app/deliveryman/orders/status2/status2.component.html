@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Change order status</h1>
+<mat-form-field>
+  <mat-label>Status</mat-label>
+  <mat-select [(value)]="selectedStatus">
+    <mat-option [value]="status.id" *ngFor="let status of orderStatus">
+      {{ status.name }}</mat-option
+    >
+  </mat-select>
+</mat-form-field>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="setOrderStatus()">
+    Change
+  </button>
+</div>

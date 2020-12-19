@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Order details</h1>
+<div mat-dialog-content>
+  <mat-list *ngIf="orderInformation" role="list">
+    <mat-list-item role="listitem"
+      ><b>Adress From:&nbsp;</b
+      >{{ orderInformation.order.address_from }}</mat-list-item
+    >
+    <mat-list-item role="listitem"
+      ><b>Address To:&nbsp;</b
+      >{{ orderInformation.order.address_to }}</mat-list-item
+    >
+  </mat-list>
+  <mat-spinner *ngIf="!orderInformation"></mat-spinner>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="displayRoute()">
+    Display Route
+  </button>
+</div>

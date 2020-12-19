@@ -27,4 +27,18 @@ export class OrdersService {
       .get<any>(`${environment.apiEndpoint}/Orders/${id}/order`, { headers })
       .pipe(catchError(this.handleError));
   }
+
+  delayOrder(id: string, days: number): Observable<any> {
+    return this.http
+      .get<any>(`${environment.apiEndpoint}/Orders/${id}/${days}`, { headers })
+      .pipe(catchError(this.handleError));
+  }
+
+  changeOrderStatus(status: any): Observable<any> {
+    return this.http
+      .post<any>(`${environment.apiEndpoint}/Orders/changeStatus`, status, {
+        headers,
+      })
+      .pipe(catchError(this.handleError));
+  }
 }
