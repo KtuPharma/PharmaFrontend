@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { OrdersService } from '../../services/orders/orders.service';
 import { Order } from '../../interfaces/order';
-import { BackendService } from 'src/app/services/backend.service';
+import { BackendService } from '../../services/backend.service';
 import { OrderComponent } from './order/order.component';
 import { MatDialog } from '@angular/material/dialog';
 
