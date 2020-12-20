@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Add Stock</h1>
+<mat-form-field>
+  <mat-label>Warehouse</mat-label>
+  <mat-select [(value)]="selectedProvider">
+    <mat-option
+      (click)="getProviderProducts()"
+      [value]="option.id"
+      *ngFor="let option of availableProviders"
+    >
+      {{ option.address }}</mat-option
+    >
+  </mat-select>
+</mat-form-field>
+<mat-form-field *ngIf="selectedProvider != 0">
+  <mat-label>Warehouse Products</mat-label>
+  <mat-select [(value)]="selectedProducts" multiple>
+    <mat-option
+      (click)="addProductMock()"
+      [value]="option.id"
+      *ngFor="let option of providerProducts"
+    >
+      {{ option.name }}</mat-option
+    >
+  </mat-select>
+</mat-form-field>
+<div class="product-item" *ngFor="let item of stockDTO; index as i">
+  <mat-label class="product-name">{{
+    getProductNameById(item.productBalanceId)
+  }}</mat-label>
+  <mat-form-field>
+    <mat-label>Quantity</mat-label>
+    <input [(ngModel)]="stockDTO[i].quantity" type="number" matInput />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="add()">Add</button>
+</div>

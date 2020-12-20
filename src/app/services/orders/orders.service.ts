@@ -51,4 +51,16 @@ export class OrdersService {
       })
       .pipe(catchError((err) => this.handleError(err, this.messagingService)));
   }
+
+  addOrder(id, productList): Observable<any> {
+    return this.http
+      .post<any>(
+        `${environment.apiEndpoint}/Warehouse/${id}/order`,
+        [...productList],
+        {
+          headers,
+        }
+      )
+      .pipe(catchError((err) => this.handleError(err, this.messagingService)));
+  }
 }
