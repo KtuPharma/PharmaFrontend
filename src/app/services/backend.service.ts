@@ -24,14 +24,27 @@ export class BackendService {
     private messagingService: MessagingService
   ) {}
 
-  private handleError(error: HttpErrorResponse) {
-    this.messagingService.errorMessage('Something went wrong');
+  handleError(error: HttpErrorResponse, ms: MessagingService) {
+    const errors = Object.values(error.error.errors);
+    let message = '';
+    errors.forEach((er) => {
+      message += `${er}\n`;
+    });
+    ms.errorMessage(message);
     return throwError('Something bad happened. :(');
   }
 
   getDataList(data: string): Observable<any> {
     return this.http
       .get<any>(`${environment.apiEndpoint}/${data}`, { headers })
-      .pipe(catchError(this.handleError));
+      .pipe(catchError((err) => this.handleError(err, this.messagingService)));
+  }
+
+  sendMessage(message): Observable<any> {
+    return this.http
+      .post<any>(`${environment.apiEndpoint}/Messages`, message, {
+        headers,
+      })
+      .pipe(catchError((err) => this.handleError(err, this.messagingService)));
   }
 }

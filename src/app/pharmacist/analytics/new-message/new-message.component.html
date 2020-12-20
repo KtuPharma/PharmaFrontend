@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Send Message</h1>
+<mat-form-field>
+  <mat-label>Topic</mat-label>
+  <input [(ngModel)]="topic" matInput />
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Message</mat-label>
+  <input [(ngModel)]="text" matInput />
+</mat-form-field>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="submit()">Send</button>
+</div>
