@@ -43,6 +43,11 @@ const routes: Routes = [
     canActivate: [RoleGuard],
   },
   {
+    path: 'admin/messages',
+    component: PharmacistAnalyticsComponent,
+    canActivate: [RoleGuard],
+  },
+  {
     path: 'pharmacist/analytics',
     component: PharmacistAnalyticsComponent,
     canActivate: [RoleGuard],
