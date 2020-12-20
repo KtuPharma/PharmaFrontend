@@ -70,6 +70,7 @@ import { MessagingService } from './services/messaging.service';
 import { UsersService } from './services/users/users.service';
 import { NewMessageComponent } from './pharmacist/analytics/new-message/new-message.component';
 import { NewOrderComponent } from './pharmacist/orders/new-order/new-order.component';
+import { FullReportComponent } from './admin/pharmacies/full-report/full-report.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { NewOrderComponent } from './pharmacist/orders/new-order/new-order.compo
     Order3Component,
     NewMessageComponent,
     NewOrderComponent,
+    FullReportComponent,
   ],
   imports: [
     BrowserModule,
