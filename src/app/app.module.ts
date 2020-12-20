@@ -64,6 +64,8 @@ import { OrderComponent2 } from './deliveryman/orders/order/order.component';
 import { DelayOrderComponent } from './deliveryman/orders/delay-order/delay-order.component';
 import { Status2Component } from './deliveryman/orders/status2/status2.component';
 import { MessageDialogComponent } from './shared/message-dialog/message-dialog.component';
+import { AddStockComponent } from './storeman/stock/add-stock/add-stock.component';
+import { Order3Component } from './storeman/orders/order3/order3.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +93,8 @@ import { MessageDialogComponent } from './shared/message-dialog/message-dialog.c
     DelayOrderComponent,
     Status2Component,
     MessageDialogComponent,
+    AddStockComponent,
+    Order3Component,
   ],
   imports: [
     BrowserModule,

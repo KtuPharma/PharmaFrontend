@@ -18,6 +18,7 @@ export class StoremanMedicineListComponent implements OnInit {
     'isReimbursed',
     'country',
     'form',
+    'inSale',
     'actions',
   ];
 
