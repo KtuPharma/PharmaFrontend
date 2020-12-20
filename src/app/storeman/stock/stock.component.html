@@ -1,6 +1,7 @@
 <mat-card class="display-card">
   <h1>Sandelėninko likučių sąrašas</h1>
 </mat-card>
+<button mat-flat-button color="primary" (click)="addStock()">Add Stock</button>
 <table mat-table [dataSource]="stockList" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>id</th>

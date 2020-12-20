@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 import { MessagingService } from '../../services/messaging.service';
 import { SupplierService } from '../../services/suppliers/suppliers.service';
+import { AddStockComponent } from './add-stock/add-stock.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-stock',
@@ -22,11 +24,17 @@ export class StoremanStockComponent implements OnInit {
   constructor(
     private backendService: BackendService,
     private messagingService: MessagingService,
-    private suppliersService: SupplierService
+    private suppliersService: SupplierService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.getStockList();
+  }
+
+  addStock(): void {
+    const dialogRef = this.dialog.open(AddStockComponent);
+    dialogRef.afterClosed().subscribe(() => this.getStockList());
   }
 
   getStockList(): void {

@@ -47,4 +47,16 @@ export class SupplierService {
       )
       .pipe(catchError(this.handleError));
   }
+
+  addStock(id, productList): Observable<any> {
+    return this.http
+      .post<any>(
+        `${environment.apiEndpoint}/Providers/${id}/order`,
+        [...productList],
+        {
+          headers,
+        }
+      )
+      .pipe(catchError(this.handleError));
+  }
 }
