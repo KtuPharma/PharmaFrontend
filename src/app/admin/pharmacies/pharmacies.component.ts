@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Pharmacy } from 'src/app/interfaces/pharmacy';
 import { BackendService } from 'src/app/services/backend.service';
-import { PharmaciesService } from 'src/app/services/pharmacies/pharmacies.service';
 import { PharmaciesReportComponent } from './pharmacies-report/pharmacies-report.component';
+import { FullReportComponent } from './full-report/full-report.component';
 
 @Component({
   selector: 'app-pharmacies',
@@ -34,5 +34,9 @@ export class AdminPharmaciesComponent implements OnInit {
     this.dialog.open(PharmaciesReportComponent, {
       data: phamracyId,
     });
+  }
+
+  getFullReport() {
+    this.dialog.open(FullReportComponent);
   }
 }

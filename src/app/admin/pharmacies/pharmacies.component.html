@@ -2,6 +2,9 @@
   <h1>Pharmacies</h1>
 </mat-card>
 
+<button (click)="getFullReport()" mat-flat-button color="primary">
+  Full Report
+</button>
 <table mat-table [dataSource]="pharmacies" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id</th>

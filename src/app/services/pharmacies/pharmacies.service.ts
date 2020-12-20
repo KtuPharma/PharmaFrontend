@@ -40,6 +40,14 @@ export class PharmaciesService {
       .pipe(catchError((err) => this.handleError(err, this.messagingService)));
   }
 
+  getFullReport(query): Observable<any> {
+    return this.http
+      .post<any>(`${environment.apiEndpoint}/Reports`, query, {
+        headers,
+      })
+      .pipe(catchError((err) => this.handleError(err, this.messagingService)));
+  }
+
   changeMedicineStatus(id): Observable<any> {
     return this.http
       .post<any>(

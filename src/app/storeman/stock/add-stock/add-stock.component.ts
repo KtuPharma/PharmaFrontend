@@ -16,7 +16,7 @@ export class AddStockComponent implements OnInit {
   providerProducts: any;
   selectedProducts: any;
 
-  stockDTO: any;
+  stockDTO: any = [];
 
   constructor(
     private backendService: BackendService,

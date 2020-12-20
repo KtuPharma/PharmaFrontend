@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NewOrderComponent } from './new-order/new-order.component';
+import { OrderComponent } from '../../admin/orders/order/order.component';
 
 @Component({
   selector: 'app-orders',
@@ -37,5 +38,11 @@ export class PharmacistOrdersComponent implements OnInit {
   createNewOrder(): void {
     const dialogRef = this.dialog.open(NewOrderComponent);
     dialogRef.afterClosed().subscribe(() => this.getOrders());
+  }
+
+  getOrderInformation(id) {
+    this.dialog.open(OrderComponent, {
+      data: id,
+    });
   }
 }
