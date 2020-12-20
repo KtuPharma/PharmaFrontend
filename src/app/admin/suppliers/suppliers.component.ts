@@ -4,6 +4,7 @@ import { SupplierService } from 'src/app/services/suppliers/suppliers.service';
 import { BackendService } from 'src/app/services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NewSupplierComponent } from './new-supplier/new-supplier.component';
+import { MessagingService } from '../../services/messaging.service';
 
 @Component({
   selector: 'app-suppliers',
@@ -18,6 +19,7 @@ export class AdminSuppliersComponent implements OnInit {
   constructor(
     private backendService: BackendService,
     private suppliersService: SupplierService,
+    private messagingService: MessagingService,
     private dialog: MatDialog
   ) {}
 
@@ -26,7 +28,8 @@ export class AdminSuppliersComponent implements OnInit {
   }
 
   submit(id: number): void {
-    this.suppliersService.changeProviderStatus(id).subscribe((result) => {
+    this.suppliersService.changeProviderStatus(id).subscribe(() => {
+      this.messagingService.successMessage('Supplier was removed!');
       this.getSuppliers();
     });
   }

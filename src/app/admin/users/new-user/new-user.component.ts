@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from 'src/app/services/backend.service';
 import { UsersService } from 'src/app/services/users/users.service';
+import { MessagingService } from '../../../services/messaging.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-user',
@@ -23,7 +25,9 @@ export class NewUserComponent implements OnInit {
 
   constructor(
     private backendService: BackendService,
-    private usersService: UsersService
+    private messagingService: MessagingService,
+    private usersService: UsersService,
+    private dialogRef: MatDialogRef<NewUserComponent>
   ) {}
 
   ngOnInit(): void {
@@ -44,9 +48,10 @@ export class NewUserComponent implements OnInit {
       pharmacyWarehouseOrTruck: this.workPlace,
     };
 
-    this.usersService
-      .createUser(userObject)
-      .subscribe((result) => console.log(result));
+    this.usersService.createUser(userObject).subscribe((result) => {
+      this.messagingService.successMessage('User was added!');
+      this.dialogRef.close();
+    });
   }
 
   getRoleOptions(): void {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { BackendService } from 'src/app/services/backend.service';
 import { SupplierService } from 'src/app/services/suppliers/suppliers.service';
+import { MessagingService } from '../../../services/messaging.service';
 
 @Component({
   selector: 'app-new-supplier',
@@ -18,6 +19,7 @@ export class NewSupplierComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<NewSupplierComponent>,
+    private messagingService: MessagingService,
     private backendService: BackendService,
     private supplierService: SupplierService
   ) {}
@@ -34,9 +36,10 @@ export class NewSupplierComponent implements OnInit {
       products: this.products,
       warehouse: [this.selectedWarehouse],
     };
-    this.supplierService
-      .createProvider(supplierObject)
-      .subscribe((result) => console.log(result));
+    this.supplierService.createProvider(supplierObject).subscribe(() => {
+      this.messagingService.successMessage('Supplier was added!');
+      this.dialogRef.close();
+    });
   }
 
   close(): void {
