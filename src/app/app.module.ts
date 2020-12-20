@@ -69,6 +69,7 @@ import { Order3Component } from './storeman/orders/order3/order3.component';
 import { MessagingService } from './services/messaging.service';
 import { UsersService } from './services/users/users.service';
 import { NewMessageComponent } from './pharmacist/analytics/new-message/new-message.component';
+import { NewOrderComponent } from './pharmacist/orders/new-order/new-order.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { NewMessageComponent } from './pharmacist/analytics/new-message/new-mess
     AddStockComponent,
     Order3Component,
     NewMessageComponent,
+    NewOrderComponent,
   ],
   imports: [
     BrowserModule,

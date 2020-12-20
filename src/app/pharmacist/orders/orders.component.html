@@ -1,7 +1,9 @@
 <mat-card class="display-card">
   <h1>Orders</h1>
 </mat-card>
-
+<button mat-flat-button color="primary" (click)="createNewOrder()">
+  New Order
+</button>
 <table mat-table [dataSource]="orders" class="mat-elevation-z8">
   <ng-container matColumnDef="orderTime">
     <th mat-header-cell *matHeaderCellDef>Order time</th>
