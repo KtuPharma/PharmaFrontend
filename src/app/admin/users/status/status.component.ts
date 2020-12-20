@@ -4,6 +4,7 @@ import { UserStatus } from 'src/app/interfaces/userStatus';
 import { StatusDTO } from 'src/app/interfaces/statusDTO';
 import { BackendService } from 'src/app/services/backend.service';
 import { UsersService } from 'src/app/services/users/users.service';
+import { MessagingService } from '../../../services/messaging.service';
 
 @Component({
   selector: 'app-status',
@@ -16,6 +17,7 @@ export class StatusComponent implements OnInit {
   constructor(
     private backendService: BackendService,
     private usersService: UsersService,
+    private messagingService: MessagingService,
     public dialogRef: MatDialogRef<StatusComponent>,
     @Inject(MAT_DIALOG_DATA) public data: number
   ) {}
@@ -36,8 +38,9 @@ export class StatusComponent implements OnInit {
       status: this.selectedStatus.toString(),
     };
 
-    this.usersService
-      .changeUsetStatus(status)
-      .subscribe(() => this.dialogRef.close());
+    this.usersService.changeUsetStatus(status).subscribe(() => {
+      this.messagingService.successMessage('Status was changed');
+      this.dialogRef.close();
+    });
   }
 }

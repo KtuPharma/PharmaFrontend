@@ -3,9 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageDialogComponent } from '../shared/message-dialog/message-dialog.component';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class MessagingService {
   constructor(private snackBar: MatSnackBar, private dialog: MatDialog) {}
 
@@ -13,6 +11,13 @@ export class MessagingService {
     this.snackBar.open(message, '', {
       duration: 2000,
       panelClass: ['green-snackbar'],
+    });
+  }
+
+  errorMessage(message: string) {
+    this.snackBar.open(message, '', {
+      duration: 5000,
+      panelClass: ['red-snackbar'],
     });
   }
 

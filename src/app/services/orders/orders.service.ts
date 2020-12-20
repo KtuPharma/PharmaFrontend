@@ -5,6 +5,7 @@ import { throwError } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
 import { Observable, of, from } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { MessagingService } from '../messaging.service';
 
 const headers = new HttpHeaders({
   'Content-Type': 'application/json',
@@ -16,22 +17,31 @@ const headers = new HttpHeaders({
   providedIn: 'root',
 })
 export class OrdersService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private messagingService: MessagingService
+  ) {}
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse, ms: MessagingService) {
+    const errors = Object.values(error.error.errors);
+    let message = '';
+    errors.forEach((er) => {
+      message += `${er}\n`;
+    });
+    ms.errorMessage(message);
     return throwError('Something bad happened. :(');
   }
 
   getOrderInformation(id: string): Observable<any> {
     return this.http
       .get<any>(`${environment.apiEndpoint}/Orders/${id}/order`, { headers })
-      .pipe(catchError(this.handleError));
+      .pipe(catchError((err) => this.handleError(err, this.messagingService)));
   }
 
   delayOrder(id: string, days: number): Observable<any> {
     return this.http
       .get<any>(`${environment.apiEndpoint}/Orders/${id}/${days}`, { headers })
-      .pipe(catchError(this.handleError));
+      .pipe(catchError((err) => this.handleError(err, this.messagingService)));
   }
 
   changeOrderStatus(status: any): Observable<any> {
@@ -39,6 +49,6 @@ export class OrdersService {
       .post<any>(`${environment.apiEndpoint}/Orders/changeStatus`, status, {
         headers,
       })
-      .pipe(catchError(this.handleError));
+      .pipe(catchError((err) => this.handleError(err, this.messagingService)));
   }
 }

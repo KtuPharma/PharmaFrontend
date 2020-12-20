@@ -5,6 +5,7 @@ import { throwError } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
 import { Observable, of, from } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { MessagingService } from '../messaging.service';
 import { StatusDTO } from 'src/app/interfaces/statusDTO';
 
 const headers = new HttpHeaders({
@@ -13,13 +14,20 @@ const headers = new HttpHeaders({
   Accept: 'application/json',
 });
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class UsersService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private messagingService: MessagingService
+  ) {}
 
-  private handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse, ms: MessagingService) {
+    const errors = Object.values(error.error.errors);
+    let message = '';
+    errors.forEach((er) => {
+      message += `${er}\n`;
+    });
+    ms.errorMessage(message);
     return throwError('Something bad happened. :(');
   }
 
@@ -28,7 +36,7 @@ export class UsersService {
       .post<any>(`${environment.apiEndpoint}/Users/status/edit`, status, {
         headers,
       })
-      .pipe(catchError(this.handleError));
+      .pipe(catchError((err) => this.handleError(err, this.messagingService)));
   }
 
   createUser(userObject): Observable<any> {
@@ -36,6 +44,6 @@ export class UsersService {
       .post<any>(`${environment.apiEndpoint}/Users/register`, userObject, {
         headers,
       })
-      .pipe(catchError(this.handleError));
+      .pipe(catchError((err) => this.handleError(err, this.messagingService)));
   }
 }

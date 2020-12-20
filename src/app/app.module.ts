@@ -66,6 +66,8 @@ import { Status2Component } from './deliveryman/orders/status2/status2.component
 import { MessageDialogComponent } from './shared/message-dialog/message-dialog.component';
 import { AddStockComponent } from './storeman/stock/add-stock/add-stock.component';
 import { Order3Component } from './storeman/orders/order3/order3.component';
+import { MessagingService } from './services/messaging.service';
+import { UsersService } from './services/users/users.service';
 
 @NgModule({
   declarations: [
@@ -136,6 +138,8 @@ import { Order3Component } from './storeman/orders/order3/order3.component';
   ],
   providers: [
     RoleGuardService,
+    MessagingService,
+    UsersService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
