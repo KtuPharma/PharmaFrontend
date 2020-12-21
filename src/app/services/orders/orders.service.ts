@@ -63,4 +63,10 @@ export class OrdersService {
       )
       .pipe(catchError((err) => this.handleError(err, this.messagingService)));
   }
+
+  cancelOrder(id): Observable<any> {
+    return this.http
+      .get<any>(`${environment.apiEndpoint}/Orders/${id}/cancel`, { headers })
+      .pipe(catchError((err) => this.handleError(err, this.messagingService)));
+  }
 }
