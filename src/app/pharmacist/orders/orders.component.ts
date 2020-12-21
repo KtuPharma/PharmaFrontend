@@ -3,6 +3,8 @@ import { BackendService } from '../../services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NewOrderComponent } from './new-order/new-order.component';
 import { OrderComponent } from '../../admin/orders/order/order.component';
+import { OrdersService } from '../../services/orders/orders.service';
+import { MessagingService } from '../../services/messaging.service';
 
 @Component({
   selector: 'app-orders',
@@ -22,6 +24,8 @@ export class PharmacistOrdersComponent implements OnInit {
   ];
   constructor(
     private backendService: BackendService,
+    private ordersService: OrdersService,
+    private messagingService: MessagingService,
     private dialog: MatDialog
   ) {}
 
@@ -44,5 +48,17 @@ export class PharmacistOrdersComponent implements OnInit {
     this.dialog.open(OrderComponent, {
       data: id,
     });
+  }
+
+  cancelOrder(id) {
+    this.messagingService
+      .confirmDialog('Are you sure you want to cancel this order?')
+      .then((isConfirmed) => {
+        if (isConfirmed)
+          this.ordersService.cancelOrder(id).subscribe(() => {
+            this.getOrders();
+            this.messagingService.successMessage('Order was canceled');
+          });
+      });
   }
 }
