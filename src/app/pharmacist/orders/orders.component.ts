@@ -5,6 +5,7 @@ import { NewOrderComponent } from './new-order/new-order.component';
 import { OrderComponent } from '../../admin/orders/order/order.component';
 import { OrdersService } from '../../services/orders/orders.service';
 import { MessagingService } from '../../services/messaging.service';
+import { PharmacistReportComponent } from './pharmacist-report/pharmacist-report.component';
 
 @Component({
   selector: 'app-orders',
@@ -60,5 +61,9 @@ export class PharmacistOrdersComponent implements OnInit {
             this.messagingService.successMessage('Order was canceled');
           });
       });
+  }
+
+  generateReport() {
+    this.dialog.open(PharmacistReportComponent);
   }
 }

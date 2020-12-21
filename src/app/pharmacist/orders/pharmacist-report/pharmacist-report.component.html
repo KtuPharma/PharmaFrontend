@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Pharmacy Report</h1>
+<mat-form-field appearance="fill">
+  <mat-label>Enter a date range</mat-label>
+  <mat-date-range-input [rangePicker]="picker">
+    <input [(ngModel)]="fromDate" matStartDate placeholder="Start date" />
+    <input [(ngModel)]="toDate" matEndDate placeholder="End date" />
+  </mat-date-range-input>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="getReport()">
+    Generate Report
+  </button>
+</div>

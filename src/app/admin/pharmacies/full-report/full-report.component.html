@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Full Pharmacy Report</h1>
+<h1 mat-dialog-title>Full Pharmacies Report</h1>
 <mat-form-field appearance="fill">
   <mat-label>Enter a date range</mat-label>
   <mat-date-range-input [rangePicker]="picker">
@@ -9,7 +9,12 @@
   <mat-date-range-picker #picker></mat-date-range-picker>
 </mat-form-field>
 <div mat-dialog-actions>
-  <button mat-flat-button color="primary" (click)="getFullReport()">
+  <button
+    *ngIf="!pharmacyReport"
+    mat-flat-button
+    color="primary"
+    (click)="getFullReport()"
+  >
     Generate Report
   </button>
 </div>
@@ -23,7 +28,7 @@
     <h1 mat-dialog-title>
       There are {{ pharmacyReport.pharmaciesCounter }} registered pharmacies
     </h1>
-    <h1 mat-dialog-title>Pharmacy Info</h1>
+    <h1 mat-dialog-title>Pharmacies Info</h1>
     <table mat-table [dataSource]="pharmacyReport.profitByPharmacy">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Address</th>
