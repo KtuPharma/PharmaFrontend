@@ -4,6 +4,14 @@
 <button mat-flat-button color="primary" (click)="createNewOrder()">
   New Order
 </button>
+<button
+  mat-flat-button
+  color="primary"
+  style="margin-left: 10px"
+  (click)="generateReport()"
+>
+  Create Report
+</button>
 <table mat-table [dataSource]="orders" class="mat-elevation-z8">
   <ng-container matColumnDef="orderTime">
     <th mat-header-cell *matHeaderCellDef>Order time</th>
